@@ -25,12 +25,7 @@ export default function Navbar() {
               </div>
 
               <div className="flex flex-1 sm:items-stretch sm:justify-between">
-                <div className="flex flex-shrink-0 items-center sm: ml-12">
-                  <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt="hypeGG"
-                  />
+                <div className="flex flex-shrink-0 items-center">
                   <img
                     className="hidden h-8 w-auto lg:block"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
