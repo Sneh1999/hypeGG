@@ -7,10 +7,10 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-white shadow">
+    <Disclosure as="nav" className="bg-white drop-shadow-[0_15px_15px_rgba(0,0,0,0.1)]">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-2 py-4 sm:px-6 lg:px-8">
             <div className="relative flex h-16 justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
@@ -24,30 +24,30 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
 
-              <div className="flex flex-1 sm:items-stretch sm:justify-between">
+              <div className="flex flex-1 sm:items-stretch sm:justify-between ">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    className="hidden h-24 w-auto lg:block"
+                    src="/logo.svg"
                     alt="hypeGG"
                   />
                 </div>
                 <div className="hidden items-center justify-center sm:ml-6 sm:flex sm:space-x-24">
                   <a
                     href="#"
-                    className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                    className="inline-flex items-center border-b-2 border-indigo-500 text-xl  font-bold px-1 pt-1 text-sm text-gray-900"
                   >
                     Home
                   </a>
                   <a
                     href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent text-xl  font-bold px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     FAQ
                   </a>
                   <a
                     href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent text-xl  font-bold px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     Mint Hype
                   </a>
