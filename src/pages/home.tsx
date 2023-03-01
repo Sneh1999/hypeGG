@@ -14,7 +14,7 @@ export default function Home() {
               </h1>
               <p className="mt-6 text-lg sm:text-xl leading-8 text-gray-600">
                 Lorem ipsum dolor sit amet consectetur. Diam libero blandit
-                aliquaus eu molestie .
+                aliquaus eu molestie.
               </p>
               <div className="mt-4 flex items-center gap-x-6">
                 <a
