@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 contract/node_modules
+contract/
 
 # testing
 /coverage
