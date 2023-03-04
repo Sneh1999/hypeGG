@@ -8,6 +8,8 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { fantomTestnet } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { chains, provider } = configureChains(
   [fantomTestnet],
@@ -26,20 +28,21 @@ const wagmiClient = createClient({
 });
 
 const nunito = Nunito({
-  subsets: ['latin'],
+  subsets: ["latin"],
   // weight: ["300", "400", "700", "900"]
-})
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={nunito.className}>
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </RainbowKitProvider>
-    </WagmiConfig>
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider chains={chains}>
+          <Layout>
+            <ToastContainer />
+            <Component {...pageProps} />
+          </Layout>
+        </RainbowKitProvider>
+      </WagmiConfig>
     </main>
   );
 }

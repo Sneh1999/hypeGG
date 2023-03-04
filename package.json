@@ -23,11 +23,14 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
+    "react-toastify": "^9.1.1",
     "typescript": "4.9.5",
-    "wagmi": "^0.11.5"
+    "wagmi": "^0.11.5",
+    "zustand": "^4.3.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "eslint-plugin-tailwindcss": "^3.10.1",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7"
   }
