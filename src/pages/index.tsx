@@ -1,4 +1,3 @@
-import Usage from "@/components/Usage";
 import { Inter } from "@next/font/google";
 import Home from "./home";
 
@@ -9,7 +8,6 @@ export default function App() {
     <>
       <main>
         <Home />
-        <Usage />
       </main>
     </>
   );
