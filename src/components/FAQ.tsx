@@ -4,7 +4,7 @@ import faq from "../../public/faq.png";
 
 const FAQ = () => {
   return (
-    <div>
+    <div id="faq">
       <div className="flex items-center justify-center font-extrabold">
         <h1 className="text-[#7165FF] text-3xl py-10">FAQ</h1>
         <div className="mt-8">

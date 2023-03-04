@@ -1,13 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { classNames } from "@/utils/classNames";
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-white drop-shadow-[0_15px_15px_rgba(0,0,0,0.1)]">
+    <Disclosure
+      as="nav"
+      className="bg-white drop-shadow-[0_15px_15px_rgba(0,0,0,0.1)]"
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 py-4 sm:px-6 lg:px-8">
@@ -33,24 +35,30 @@ export default function Navbar() {
                   />
                 </div>
                 <div className="hidden items-center justify-center sm:ml-6 sm:flex sm:space-x-24">
-                  <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-indigo-500 text-xl  font-bold px-1 pt-1 text-sm text-gray-900"
+                  <Link
+                    href="/home"
+                    className="inline-flex items-center border-b-2 border-indigo-500 font-bold px-1 pt-1 text-sm text-gray-900"
                   >
                     Home
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-transparent text-xl  font-bold px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  </Link>
+                  <Link
+                    href="/home#faq"
+                    className="inline-flex items-center border-b-2 border-transparent font-bold px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
-                    FAQ
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-transparent text-xl  font-bold px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    <button>FAQ</button>
+                  </Link>
+                  <Link
+                    href="/createHype"
+                    className="inline-flex items-center border-b-2 border-transparent font-bold px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
-                    Mint Hype
-                  </a>
+                    Create Hype
+                  </Link>
+                  <Link
+                    href="/claimHype"
+                    className="inline-flex items-center border-b-2 border-transparent font-bold px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  >
+                    Claim Hype
+                  </Link>
                 </div>
               </div>
 
