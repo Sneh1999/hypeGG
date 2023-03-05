@@ -27,7 +27,7 @@ export default function Navbar() {
               </div>
 
               <div className="flex flex-1 sm:items-stretch sm:justify-between ">
-                <div className="flex flex-shrink-0 items-center">
+                <div className="flex shrink-0 items-center">
                   <img
                     className="hidden h-24 w-auto lg:block"
                     src="/logo.svg"
@@ -37,32 +37,32 @@ export default function Navbar() {
                 <div className="hidden items-center justify-center sm:ml-6 sm:flex sm:space-x-24">
                   <Link
                     href="/home"
-                    className="inline-flex items-center border-b-2 border-indigo-500 font-bold px-1 pt-1 text-sm text-gray-900"
+                    className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-bold text-gray-900"
                   >
                     Home
                   </Link>
                   <Link
                     href="/home#faq"
-                    className="inline-flex items-center border-b-2 border-transparent font-bold px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-bold text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     <button>FAQ</button>
                   </Link>
                   <Link
                     href="/createHype"
-                    className="inline-flex items-center border-b-2 border-transparent font-bold px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-bold text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     Create Hype
                   </Link>
                   <Link
                     href="/claimHype"
-                    className="inline-flex items-center border-b-2 border-transparent font-bold px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-bold text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     Claim Hype
                   </Link>
                 </div>
               </div>
 
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto md:ml-52 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0 md:ml-52">
                 <ConnectButton />
               </div>
             </div>
