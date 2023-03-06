@@ -71,7 +71,7 @@ const CreateHypeForm = () => {
   };
 
   return (
-    <div className="mx-auto mt-20 flex items-center justify-center gap-40">
+    <div className="mx-auto mt-20 flex flex-col items-center justify-center gap-20 md:flex-row md:gap-40">
       <div className="flex-col">
         <h1 className="text-3xl font-extrabold text-[#7165FF]">Send HypeGG</h1>
         <h3 className="pt-2 text-base font-medium text-[#00000080]">

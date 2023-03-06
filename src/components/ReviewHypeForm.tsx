@@ -5,7 +5,7 @@ import React from "react";
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
   return (
-    <div className="mx-auto mt-20 flex items-center justify-center gap-20">
+    <div className="mx-auto mt-20 flex flex-col-reverse items-center justify-center gap-10 md:flex-row">
       <div className="mr-10 flex flex-col">
         <h1 className="text-3xl font-extrabold text-[#7165FF]">
           Review HypeGG
