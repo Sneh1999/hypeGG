@@ -7,14 +7,12 @@ interface CreateHypeState {
   addresses: string[];
   image: string;
   form: HypeForm;
-  csv: string;
   setCollection: (collection: string) => void;
   setCommunity: (community: string) => void;
   addAddress: (address: string) => void;
   removeAddress: (address: string) => void;
   setImage: (image: string) => void;
   setForm: (form: HypeForm) => void;
-  setCSV: (csv: string) => void;
 }
 
 export const useCreateHypeStore = create<CreateHypeState>()((set) => ({
@@ -73,14 +71,6 @@ export const useCreateHypeStore = create<CreateHypeState>()((set) => ({
       return {
         ...state,
         form: form,
-      };
-    });
-  },
-  setCSV(csv) {
-    set((state) => {
-      return {
-        ...state,
-        csv: csv,
       };
     });
   },

@@ -33,6 +33,20 @@ async function imageSize(
 const CreateHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
 
+  const handleNext = () => {
+    if (!(createHypeStore.community.length > 0)) {
+      return toast.error("Community not set");
+    }
+
+    if (!(createHypeStore.collection.length > 0)) {
+      return toast.error("Headline not set");
+    }
+
+    if (createHypeStore.image == "") {
+      return toast.error("Image not set");
+    }
+    createHypeStore.setForm(HypeForm.DISTRIBUTE_HYPE);
+  };
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) {
       return toast.error("No file uploaded");
@@ -54,8 +68,6 @@ const CreateHypeForm = () => {
     }
 
     createHypeStore.setImage(objectUrl);
-
-    // TODO: Upload `file` to IPFS
   };
 
   return (
@@ -88,7 +100,7 @@ const CreateHypeForm = () => {
 
         <button
           className=" float-right mt-4 rounded-xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] px-5 py-3 text-white hover:opacity-70"
-          onClick={() => createHypeStore.setForm(HypeForm.DISTRIBUTE_HYPE)}
+          onClick={handleNext}
         >
           Next
         </button>

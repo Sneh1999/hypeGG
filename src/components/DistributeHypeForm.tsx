@@ -3,10 +3,41 @@ import { useCreateHypeStore } from "@/stores/CreateHypeStore";
 import React from "react";
 import { toast } from "react-toastify";
 import { MdCloudDone } from "react-icons/md";
+import { utils } from "ethers";
 
 const DistributeHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
 
+  const handleNext = () => {
+    if (createHypeStore.addresses.length <= 0) {
+      return toast.error("No CSV uploaded");
+    }
+    createHypeStore.setForm(HypeForm.REVIEW_HYPE);
+  };
+
+  const processCSV = (str: string, delim = ",") => {
+    const rows = str.split("\n");
+    console.log(rows);
+    rows.map((row) => {
+      const values = row.split(delim);
+      console.log("I came here");
+      console.log(values);
+      values.forEach((val: string) => {
+        console.log(val);
+        if (val.length <= 0 || !utils.isAddress(val)) {
+          const addresses = createHypeStore.addresses;
+          for (let address of addresses) {
+            createHypeStore.removeAddress(address);
+          }
+          return toast.error("Incorrect address:" + val);
+        } else {
+          createHypeStore.addAddress(val);
+        }
+      });
+    });
+
+    console.log(createHypeStore.addresses);
+  };
   const handleCSVUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) {
       return toast.error("No file uploaded");
@@ -20,9 +51,16 @@ const DistributeHypeForm = () => {
       return toast.error("Max image size is 2MB");
     }
 
-    const objectUrl = URL.createObjectURL(file);
+    const csvFile = file;
+    const reader = new FileReader();
 
-    createHypeStore.setCSV(objectUrl);
+    reader.onload = function (e) {
+      const text = e.target?.result;
+      processCSV(text as string);
+    };
+
+    reader.readAsText(csvFile);
+    e.target.value = "";
   };
 
   return (
@@ -32,15 +70,16 @@ const DistributeHypeForm = () => {
           Distribute HypeGG
         </h1>
         <h3 className="pt-2 text-base font-medium text-[#00000080]">
-          who can claim Hype
+          who can claim Hype. <br />
+          Note: Upload a CSV that has valid EVM addresses and no headers.
         </h3>
         <h2 className="py-2  text-base font-medium text-[#020B1A]">Address</h2>
-        <div className="flex items-center justify-center">
+        <div className="flex">
           <label
             htmlFor="csvUpload"
-            className=" h-20  w-96 cursor-pointer rounded-lg bg-[#E3E3FC] text-center text-[#020B1A] hover:opacity-70"
+            className="flex h-20  w-96  cursor-pointer items-center justify-center rounded-lg bg-[#E3E3FC] text-center text-[#020B1A] hover:opacity-70"
           >
-            {createHypeStore.csv == "" ? (
+            {createHypeStore.addresses.length <= 0 ? (
               <div className="text-center">Upload CSV with Addresses</div>
             ) : (
               <MdCloudDone className=" h-14 w-14 text-center text-green-600" />
@@ -52,7 +91,10 @@ const DistributeHypeForm = () => {
             className="hidden"
             type="file"
             accept="text/csv"
-            onChange={handleCSVUpload}
+            onChange={(e) => {
+              e.preventDefault();
+              handleCSVUpload(e);
+            }}
           />
         </div>
         <div className="flex justify-between">
@@ -64,7 +106,7 @@ const DistributeHypeForm = () => {
           </button>
           <button
             className=" float-right mt-4 rounded-2xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] px-5 py-3 text-white hover:opacity-70"
-            onClick={() => createHypeStore.setForm(HypeForm.REVIEW_HYPE)}
+            onClick={handleNext}
           >
             Next
           </button>
@@ -79,9 +121,8 @@ const DistributeHypeForm = () => {
           </h1>
 
           <div className="flex items-center justify-center">
-            {/* TODO SHOW IMAGE BASED ON IPFS */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            {/* <img src={createHypeStore.image} className="h-32 w-32" alt="dsf" /> */}
+            <img src={createHypeStore.image} className="h-32 w-32" alt="dsf" />
           </div>
 
           <span className="text-center">Created via hypeGG</span>
