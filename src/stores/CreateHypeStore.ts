@@ -20,6 +20,7 @@ export const useCreateHypeStore = create<CreateHypeState>()((set) => ({
   community: "",
   addresses: [],
   image: "",
+  csv: "",
   form: HypeForm.CREATE_HYPE,
   setCollection(collection) {
     set((state) => {
