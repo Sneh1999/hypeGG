@@ -13,6 +13,8 @@
     "@heroicons/react": "^2.0.16",
     "@next/font": "13.1.6",
     "@rainbow-me/rainbowkit": "^0.11.0",
+    "@thirdweb-dev/react": "^3.9.5",
+    "@thirdweb-dev/sdk": "^3.9.5",
     "@types/node": "18.14.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",

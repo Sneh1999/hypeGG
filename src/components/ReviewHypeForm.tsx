@@ -1,9 +1,24 @@
 import { HypeForm } from "@/constants/constants";
 import { useCreateHypeStore } from "@/stores/CreateHypeStore";
 import React from "react";
+import { CONTRACT_ADDRESS } from "@/constants/constants";
+import { useContract, useLazyMint } from "@thirdweb-dev/react";
+import { toast } from "react-toastify";
 
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
+  const { contract } = useContract(CONTRACT_ADDRESS);
+  const { mutate: lazyMint, isLoading, error } = useLazyMint(contract);
+  
+  const handleMintButton = async (): Promise<void> => {
+    try {
+      await lazyMint({ metadatas: [{ name: createHypeStore.collection, description: createHypeStore.community }] })
+      await toast.success("Hype Created Successfully!!!")
+    } catch (err) {
+      toast.error(error)
+    }
+  }
+
   return (
     <div className="mx-auto mt-20 flex flex-col-reverse items-center justify-center gap-10 md:flex-row">
       <div className="mr-10 flex flex-col">
@@ -33,8 +48,9 @@ const ReviewHypeForm = () => {
           </button>
           {/* TODO CONNECT AND MINT */}
           <button
+            disabled={isLoading}
             className=" float-right mt-4 rounded-2xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] px-5 py-3 text-white hover:opacity-70"
-            onClick={() => {}}
+            onClick={handleMintButton}
           >
             Mint
           </button>

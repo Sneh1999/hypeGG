@@ -3,6 +3,7 @@ import { HypeForm } from "@/constants/constants";
 import { useCreateHypeStore } from "@/stores/CreateHypeStore";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { useContract, useLazyMint } from "@thirdweb-dev/react";
 
 async function imageSize(
   url: string
@@ -45,7 +46,8 @@ const CreateHypeForm = () => {
     if (createHypeStore.image == "") {
       return toast.error("Image not set");
     }
-    createHypeStore.setForm(HypeForm.DISTRIBUTE_HYPE);
+    // createHypeStore.setForm(HypeForm.DISTRIBUTE_HYPE);
+    createHypeStore.setForm(HypeForm.REVIEW_HYPE)
   };
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) {
@@ -62,10 +64,10 @@ const CreateHypeForm = () => {
 
     const objectUrl = URL.createObjectURL(file);
 
-    const { width, height } = await imageSize(objectUrl);
-    if (height !== width) {
-      return toast.error("Image must be square");
-    }
+    // const { width, height } = await imageSize(objectUrl);
+    // if (height !== width) {
+    //   return toast.error("Image must be square");
+    // }
 
     createHypeStore.setImage(objectUrl);
   };

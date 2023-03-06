@@ -10,6 +10,7 @@ import { fantomTestnet } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ThirdwebProvider } from "@thirdweb-dev/react";
 
 const { chains, provider } = configureChains(
   [fantomTestnet],
@@ -35,6 +36,7 @@ const nunito = Nunito({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={nunito.className}>
+      <ThirdwebProvider activeChain="fantom-testnet">
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}>
           <Layout>
@@ -43,6 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
           </Layout>
         </RainbowKitProvider>
       </WagmiConfig>
+      </ThirdwebProvider>
     </main>
   );
 }

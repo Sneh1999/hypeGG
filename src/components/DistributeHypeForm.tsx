@@ -4,10 +4,46 @@ import React from "react";
 import { toast } from "react-toastify";
 import { MdCloudDone } from "react-icons/md";
 import { utils } from "ethers";
+import { CONTRACT_ADDRESS } from "@/constants/constants"; 
+import { useSetClaimConditions, useContract } from "@thirdweb-dev/react";
+import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
 
 const DistributeHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
+  const tokenId = 0;
+  const { contract } = useContract(CONTRACT_ADDRESS);
+  console.log(contract)
+  const {
+    mutateAsync: setClaimConditions,
+    isLoading,
+    error,
+  } = useSetClaimConditions(contract, tokenId);
 
+  const setClaimCondition = async (): Promise<void> => {
+    try {
+      await setClaimConditions({
+        phases: [
+          {
+            metadata: {
+              name: "Claim Phase"
+            },
+            currencyAddress: NATIVE_TOKEN_ADDRESS,
+            price: 0,
+            maxClaimablePerWallet: 1,
+            maxClaimableSupply: 10000000,
+            startTime: new Date(),
+            waitInSeconds: 60 * 60 * 24 * 7,
+            snapshot: createHypeStore.addresses
+          }
+        ]
+      })
+      toast.success('Claim Conditions setup successfully!!!');
+    } catch (err) {
+      toast.error('Error setting up Claim Conditions!!!')
+      console.error(error)
+    }
+  }
+  
   const handleNext = () => {
     if (createHypeStore.addresses.length <= 0) {
       return toast.error("No CSV uploaded");
@@ -106,7 +142,8 @@ const DistributeHypeForm = () => {
           </button>
           <button
             className=" float-right mt-4 rounded-2xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] px-5 py-3 text-white hover:opacity-70"
-            onClick={handleNext}
+            // onClick={handleNext}
+            onClick={setClaimCondition}
           >
             Next
           </button>
