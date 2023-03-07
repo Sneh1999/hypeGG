@@ -12,10 +12,10 @@ const ClaimHype = () => {
           Claim your hypeGG NFT
         </h3>
       </div>
-      <div className="flex items-center justify-around flex-wrap">
-     <NFT />
-     <NFT />
-     <NFT />
+      <div className="flex flex-wrap items-center justify-around">
+        <NFT />
+        <NFT />
+        <NFT />
       </div>
     </div>
   );

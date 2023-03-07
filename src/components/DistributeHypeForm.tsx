@@ -17,14 +17,10 @@ const DistributeHypeForm = () => {
 
   const processCSV = (str: string, delim = ",") => {
     const rows = str.split("\n");
-    console.log(rows);
     rows.map((row) => {
       const values = row.split(delim);
-      console.log("I came here");
-      console.log(values);
       values.forEach((val: string) => {
-        console.log(val);
-        if (val.length <= 0 || !utils.isAddress(val)) {
+        if ((val.length <= 0 || !utils.isAddress(val)) && val != "address") {
           const addresses = createHypeStore.addresses;
           for (let address of addresses) {
             createHypeStore.removeAddress(address);
@@ -71,7 +67,8 @@ const DistributeHypeForm = () => {
         </h1>
         <h3 className="pt-2 text-base font-medium text-[#00000080]">
           who can claim Hype. <br />
-          Note: Upload a CSV that has valid EVM addresses and no headers.
+          Note: Upload a CSV that has valid EVM addresses <br />
+          and `address` as the header
         </h3>
         <h2 className="py-2  text-base font-medium text-[#020B1A]">Address</h2>
         <div className="flex">
