@@ -1,21 +1,15 @@
 import { HypeForm } from "@/constants/constants";
 import { useCreateHypeStore } from "@/stores/CreateHypeStore";
-import React, { useEffect } from "react";
+import React from "react";
 import { CONTRACT_ADDRESS } from "@/constants/constants";
-import { useContract, useLazyMint, useActiveClaimConditionForWallet, useAddress, useContractRead } from "@thirdweb-dev/react";
+import { useContract, useLazyMint } from "@thirdweb-dev/react";
 import { toast } from "react-toastify";
 
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
   const { contract } = useContract(CONTRACT_ADDRESS);
-<<<<<<< HEAD
-  const { mutate: lazyMint, isLoading, error } = useLazyMint(contract);
-  
-  
-=======
   const { mutateAsync: lazyMint, isLoading, error } = useLazyMint(contract);
 
->>>>>>> fc790d4ea188594c497d949efff467821083ac56
   const handleMintButton = async (): Promise<void> => {
     try {
       await lazyMint({
@@ -26,13 +20,9 @@ const ReviewHypeForm = () => {
           },
         ],
       });
-      await toast.success("Hype Created Successfully!!!");
+      toast.success("Hype Created Successfully!!!");
     } catch (err) {
-<<<<<<< HEAD
-      toast.error("Failed to create Hype!!!")
-=======
       toast.error("Unable to mint");
->>>>>>> fc790d4ea188594c497d949efff467821083ac56
     }
   };
 
