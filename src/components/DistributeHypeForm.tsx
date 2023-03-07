@@ -4,7 +4,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { MdCloudDone } from "react-icons/md";
 import { utils } from "ethers";
-import { CONTRACT_ADDRESS } from "@/constants/constants"; 
+import { CONTRACT_ADDRESS } from "@/constants/constants";
 import { useSetClaimConditions, useContract } from "@thirdweb-dev/react";
 import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
 
@@ -12,12 +12,12 @@ const DistributeHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
   const tokenId = 0;
   const { contract } = useContract(CONTRACT_ADDRESS);
-  console.log(contract)
+  console.log(contract);
   const {
     mutateAsync: setClaimConditions,
     isLoading,
     error,
-  } = useSetClaimConditions(contract, tokenId);
+  } = useSetClaimConditions(contract);
 
   const setClaimCondition = async (): Promise<void> => {
     try {
@@ -25,7 +25,7 @@ const DistributeHypeForm = () => {
         phases: [
           {
             metadata: {
-              name: "Claim Phase"
+              name: "Claim Phase",
             },
             currencyAddress: NATIVE_TOKEN_ADDRESS,
             price: 0,
@@ -33,17 +33,17 @@ const DistributeHypeForm = () => {
             maxClaimableSupply: 10000000,
             startTime: new Date(),
             waitInSeconds: 60 * 60 * 24 * 7,
-            snapshot: createHypeStore.addresses
-          }
-        ]
-      })
-      toast.success('Claim Conditions setup successfully!!!');
+            snapshot: createHypeStore.addresses,
+          },
+        ],
+      });
+      toast.success("Claim Conditions setup successfully!!!");
     } catch (err) {
-      toast.error('Error setting up Claim Conditions!!!')
-      console.error(error)
+      toast.error("Error setting up Claim Conditions!!!");
+      console.error(error);
     }
-  }
-  
+  };
+
   const handleNext = () => {
     if (createHypeStore.addresses.length <= 0) {
       return toast.error("No CSV uploaded");
