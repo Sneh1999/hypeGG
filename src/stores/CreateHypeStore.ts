@@ -10,7 +10,7 @@ interface CreateHypeState {
   setCollection: (collection: string) => void;
   setCommunity: (community: string) => void;
   addAddress: (address: string) => void;
-  removeAddress: (address: string) => void;
+  removeAddresses: () => void;
   setImage: (image: string) => void;
   setForm: (form: HypeForm) => void;
 }
@@ -46,15 +46,11 @@ export const useCreateHypeStore = create<CreateHypeState>()((set) => ({
       };
     });
   },
-  removeAddress(address) {
+  removeAddresses() {
     set((state) => {
-      const index = state.addresses.findIndex((a) => a === address);
-      if (index < 0) {
-        return state;
-      }
       return {
         ...state,
-        addresses: state.addresses.splice(index, 1),
+        addresses: [],
       };
     });
   },

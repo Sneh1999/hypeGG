@@ -34,7 +34,9 @@ const ReviewHypeForm = () => {
           {/* TODO CONNECT AND MINT */}
           <button
             className=" float-right mt-4 rounded-2xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] px-5 py-3 text-white hover:opacity-70"
-            onClick={() => {}}
+            onClick={() => {
+              console.log(createHypeStore.addresses);
+            }}
           >
             Mint
           </button>

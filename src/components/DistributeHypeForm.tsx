@@ -16,23 +16,21 @@ const DistributeHypeForm = () => {
   };
 
   const processCSV = (str: string, delim = ",") => {
-    const rows = str.split("\n");
-    rows.map((row) => {
-      const values = row.split(delim);
-      values.forEach((val: string) => {
-        if ((val.length <= 0 || !utils.isAddress(val)) && val != "address") {
-          const addresses = createHypeStore.addresses;
-          for (let address of addresses) {
-            createHypeStore.removeAddress(address);
-          }
-          return toast.error("Incorrect address:" + val);
-        } else {
-          createHypeStore.addAddress(val);
-        }
-      });
-    });
+    createHypeStore.removeAddresses();
+    let rows = str.split("\n");
+    console.log(rows);
+    if (rows[0] != "address") {
+      return toast.error("Add address as the header");
+    }
 
-    console.log(createHypeStore.addresses);
+    rows.map((row) => {
+      if (!utils.isAddress(row) && row != "address") {
+        createHypeStore.removeAddresses();
+        return toast.error("Incorrect address:" + row);
+      } else {
+        createHypeStore.addAddress(row);
+      }
+    });
   };
   const handleCSVUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) {
