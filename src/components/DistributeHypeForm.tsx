@@ -105,7 +105,7 @@ const DistributeHypeForm = () => {
             Back
           </button>
           <button
-            className=" float-right mt-4 rounded-2xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] px-5 py-3 text-white hover:opacity-70"
+            className="float-right mt-4 rounded-2xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] px-5 py-3 text-white hover:opacity-70"
             onClick={handleNext}
           >
             Next
