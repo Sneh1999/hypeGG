@@ -2,11 +2,11 @@ import React from "react";
 
 const Intro = () => {
   return (
-    <div className="flex-col justify-center items-center bg-gradient-to-r from-[#FF6581] to-[#FA878D] rounded-3xl mx-2 md:w-full max-w-7xl md:mx-auto mt-20 text-white py-20 px-40">
-      <div className="font-medium text-xl text-center">
+    <div className="mx-2 mt-20 max-w-7xl flex-col items-center justify-center rounded-3xl bg-gradient-to-r from-[#FF6581] to-[#FA878D] py-20 px-40 text-white md:mx-auto md:w-full">
+      <div className="text-center text-xl font-medium">
         HypeGG Inc built the Proof of Attendance Protocol
       </div>
-      <div className="flex font-normal text-center mt-10 max-w-sm mx-auto">
+      <div className="mx-auto mt-10 flex max-w-sm text-center font-normal">
         Lorem ipsum dolor sit amet consectetur. Eu fermentum volutpat at in quam
         dictumst quam mauris amet. entum volutpat at in quam dictumst quam
         mauris amet
