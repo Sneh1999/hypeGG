@@ -1,15 +1,15 @@
 import { HypeForm } from "@/constants/constants";
 import { useCreateHypeStore } from "@/stores/CreateHypeStore";
-import React from "react";
+import React, { useEffect } from "react";
 import { CONTRACT_ADDRESS } from "@/constants/constants";
-import { useContract, useLazyMint } from "@thirdweb-dev/react";
+import { useContract, useLazyMint, useActiveClaimConditionForWallet, useAddress, useContractRead } from "@thirdweb-dev/react";
 import { toast } from "react-toastify";
 
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
   const { contract } = useContract(CONTRACT_ADDRESS);
-  console.log(contract)
   const { mutate: lazyMint, isLoading, error } = useLazyMint(contract);
+  
   
   const handleMintButton = async (): Promise<void> => {
     try {
