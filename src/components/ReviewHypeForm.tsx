@@ -8,17 +8,33 @@ import { toast } from "react-toastify";
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
   const { contract } = useContract(CONTRACT_ADDRESS);
+<<<<<<< HEAD
   const { mutate: lazyMint, isLoading, error } = useLazyMint(contract);
   
   
+=======
+  const { mutateAsync: lazyMint, isLoading, error } = useLazyMint(contract);
+
+>>>>>>> fc790d4ea188594c497d949efff467821083ac56
   const handleMintButton = async (): Promise<void> => {
     try {
-      await lazyMint({ metadatas: [{ name: createHypeStore.collection, description: createHypeStore.community }] })
-      await toast.success("Hype Created Successfully!!!")
+      await lazyMint({
+        metadatas: [
+          {
+            name: createHypeStore.collection,
+            description: createHypeStore.community,
+          },
+        ],
+      });
+      await toast.success("Hype Created Successfully!!!");
     } catch (err) {
+<<<<<<< HEAD
       toast.error("Failed to create Hype!!!")
+=======
+      toast.error("Unable to mint");
+>>>>>>> fc790d4ea188594c497d949efff467821083ac56
     }
-  }
+  };
 
   return (
     <div className="mx-auto mt-20 flex flex-col-reverse items-center justify-center gap-10 md:flex-row">
