@@ -5,14 +5,14 @@ import { toast } from "react-toastify";
 import { MdCloudDone } from "react-icons/md";
 import { utils } from "ethers";
 import { CONTRACT_ADDRESS } from "@/constants/constants"; 
-import { useSetClaimConditions, useContract } from "@thirdweb-dev/react";
+import { useSetClaimConditions, useContract, useContractRead } from "@thirdweb-dev/react";
 import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
 
 const DistributeHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
-  const tokenId = 0;
   const { contract } = useContract(CONTRACT_ADDRESS);
-  console.log(contract)
+  const { data: tokenToSetClaimConditions } = useContractRead(contract, "nextTokenIdToMint")
+  const tokenId = tokenToSetClaimConditions?.toNumber() - 1;
   const {
     mutateAsync: setClaimConditions,
     isLoading,
@@ -113,7 +113,7 @@ const DistributeHypeForm = () => {
         <div className="flex">
           <label
             htmlFor="csvUpload"
-            className="flex h-20  w-96  cursor-pointer items-center justify-center rounded-lg bg-[#E3E3FC] text-center text-[#020B1A] hover:opacity-70"
+            className="flex h-20 w-96 cursor-pointer items-center justify-center rounded-lg bg-[#E3E3FC] text-center text-[#020B1A] hover:opacity-70"
           >
             {createHypeStore.addresses.length <= 0 ? (
               <div className="text-center">Upload CSV with Addresses</div>

@@ -3,7 +3,6 @@ import { HypeForm } from "@/constants/constants";
 import { useCreateHypeStore } from "@/stores/CreateHypeStore";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { useContract, useLazyMint } from "@thirdweb-dev/react";
 
 async function imageSize(
   url: string
@@ -79,7 +78,7 @@ const CreateHypeForm = () => {
         <h3 className="pt-2 text-base font-medium text-[#00000080]">
           Kindly fill the form below to create your POT
         </h3>
-        <h2 className="py-2  text-base font-medium text-[#020B1A]">
+        <h2 className="py-2 text-base font-medium text-[#020B1A]">
           Collection
         </h2>
         <div>
@@ -111,7 +110,7 @@ const CreateHypeForm = () => {
       {/* <img src="/createPot.png" alt="createPot" className="" /> */}
 
       <div className="relative min-h-[18rem] w-96 skew-x-6">
-        <div className="absolute flex min-h-[18rem] w-96 flex-col rounded-xl  bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] py-2 px-4 text-white shadow-[inset_1px_4px_6px_2px_rgba(0,0,0,0.3)]" />
+        <div className="absolute flex min-h-[18rem] w-96 flex-col rounded-xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] py-2 px-4 text-white shadow-[inset_1px_4px_6px_2px_rgba(0,0,0,0.3)]" />
         <div className="absolute left-4 -top-4 flex min-h-[18rem] w-96 flex-col gap-10 rounded-xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] py-2 px-4 text-white shadow-[inset_1px_4px_6px_2px_rgba(0,0,0,0.3)]">
           <h1 className="text-lg font-extrabold">
             {createHypeStore.collection

@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
   const { contract } = useContract(CONTRACT_ADDRESS);
+  console.log(contract)
   const { mutate: lazyMint, isLoading, error } = useLazyMint(contract);
   
   const handleMintButton = async (): Promise<void> => {
@@ -15,7 +16,7 @@ const ReviewHypeForm = () => {
       await lazyMint({ metadatas: [{ name: createHypeStore.collection, description: createHypeStore.community }] })
       await toast.success("Hype Created Successfully!!!")
     } catch (err) {
-      toast.error(error)
+      toast.error("Failed to create Hype!!!")
     }
   }
 
