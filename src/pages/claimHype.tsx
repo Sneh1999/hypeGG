@@ -15,6 +15,11 @@ const ClaimHype = () => {
     start: 0,
     count: 100,
   });
+  // instead of 0 as tokenId need to work with a loop to fetch all the tokens and perform conditional rendering in line 43
+  const { data: claimableNFTs } = useClaimerProofs(contract, address!, 0);
+  console.log(claimableNFTs, "come on")
+  
+
   if(isLoading) {
     return(
       <div>Loading...</div>

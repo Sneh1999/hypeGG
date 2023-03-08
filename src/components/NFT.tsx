@@ -1,13 +1,8 @@
-import React, { useEffect } from "react";
-import { ThirdwebNftMedia, Web3Button, useContract, useClaimerProofs, useAddress } from "@thirdweb-dev/react";
+import React from "react";
+import { ThirdwebNftMedia, Web3Button } from "@thirdweb-dev/react";
 import { contractAddress } from "@/constants/constants";
 
 const NFT = ({ nft }) => {
-  const address = useAddress()
-  const { contract } = useContract(contractAddress);
-  const { data: claimableNFTs } = useClaimerProofs(contract, address!, 0);
-  console.log(claimableNFTs)
-
     return(
         <div className="flex flex-col items-center sm:items-center sm:flex-row bg-white rounded-lg drop-shadow-2xl hover:drop-shadow-lg overflow-hidden p-2 my-10">
         <div className="flex">
