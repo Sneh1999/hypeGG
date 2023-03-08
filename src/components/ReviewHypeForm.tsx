@@ -8,17 +8,17 @@ import {
   useStorageUpload,
 } from "@thirdweb-dev/react";
 import { contractAddress } from "../constants/constants";
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
+import { ThreeDots } from "react-loader-spinner";
 
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
   const { contract } = useContract(contractAddress);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { data } = useContractRead(contract, "nextTokenIdToMint");
   const tokenId = data?.toNumber();
-  console.log(tokenId);
-  console.log(contract);
   const { mutateAsync: lazyMint } = useLazyMint(contract);
   const { mutateAsync: setClaimConditions } = useSetClaimConditions(
     contract,
@@ -28,6 +28,7 @@ const ReviewHypeForm = () => {
 
   const handleMintButton = async (): Promise<void> => {
     try {
+      setIsLoading(true);
       console.log("createHypeStore", createHypeStore);
       const uploadUrl = await upload({
         data: [createHypeStore.imageFile],
@@ -48,10 +49,9 @@ const ReviewHypeForm = () => {
       for (let i = 1; i < createHypeStore.addresses.length; i++) {
         addresses.push({
           address: createHypeStore.addresses[i],
-          maxClaimable: 1,
+          maxClaimable: 2,
         });
       }
-      console.log(addresses);
       await setClaimConditions({
         phases: [
           {
@@ -68,10 +68,14 @@ const ReviewHypeForm = () => {
           },
         ],
       });
+      setIsLoading(false);
       toast.success("Hype Created Successfully!!!");
     } catch (err) {
       console.error(err);
+      setIsLoading(false);
       toast.error("Failed to Mint!");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -107,7 +111,11 @@ const ReviewHypeForm = () => {
             className=" float-right mt-4 rounded-2xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] px-5 py-3 text-white hover:opacity-70"
             onClick={handleMintButton}
           >
-            Mint
+            {isLoading ? (
+              <ThreeDots color="#FFFFFF" height={20} width={20} />
+            ) : (
+              "Mint"
+            )}
           </button>
         </div>
       </div>
