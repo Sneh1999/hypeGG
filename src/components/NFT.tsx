@@ -17,7 +17,7 @@ const NFT = ({
   setAllNull,
 }: {
   nft: NFT;
-  setAllNull: SetStateAction<Dispatch<boolean>>;
+  setAllNull: Dispatch<SetStateAction<boolean>>;
 }) => {
   const address = useAddress();
   const { contract } = useContract(contractAddress);
@@ -39,7 +39,15 @@ const NFT = ({
     toast.success("Claim successful!");
   };
 
-  const claimedNFTsNum = claimedNFTsData ? Number(claimedNFTsData) : 0;
+  const claimedNFTsNum = claimedNFTsData
+    ? Number(claimedNFTsData.toString())
+    : 0;
+
+  console.log({
+    nft,
+    claimableNFTs,
+    claimedNFTsNum,
+  });
 
   if (claimableNFTs && Number(claimableNFTs.maxClaimable) > claimedNFTsNum) {
     setAllNull(false);

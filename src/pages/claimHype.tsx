@@ -2,12 +2,7 @@ import Loader from "@/components/Loader";
 import NFT from "@/components/NFT";
 import { contractAddress } from "@/constants/constants";
 import { PhotoIcon } from "@heroicons/react/24/outline";
-import {
-  useAddress,
-  useClaimerProofs,
-  useContract,
-  useNFTs,
-} from "@thirdweb-dev/react";
+import { useContract, useNFTs } from "@thirdweb-dev/react";
 import { useState } from "react";
 
 const ClaimHype = () => {

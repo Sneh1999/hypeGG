@@ -67,6 +67,7 @@ const ReviewHypeForm = () => {
             snapshot: addresses,
           },
         ],
+        reset: true,
       });
       setIsLoading(false);
       toast.success("Hype Created Successfully!!!");
