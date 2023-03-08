@@ -21,20 +21,20 @@ const ReviewHypeForm = () => {
   const { mutateAsync: lazyMint } = useLazyMint(contract);
   const { mutateAsync: setClaimConditions } = useSetClaimConditions(
     contract,
-    tokenId
+    0
   );
 
   const handleMintButton = async (): Promise<void> => {
     try {
-      await lazyMint({
-        metadatas: [
-          {
-            name: createHypeStore.collection,
-            description: createHypeStore.community,
-            image: createHypeStore.image,
-          },
-        ],
-      });
+      // await lazyMint({
+      //   metadatas: [
+      //     {
+      //       name: createHypeStore.collection,
+      //       description: createHypeStore.community,
+      //       image: createHypeStore.image,
+      //     },
+      //   ],
+      // });
       const addresses = [];
       for (let i = 1; i < createHypeStore.addresses.length; i++) {
         addresses.push({
