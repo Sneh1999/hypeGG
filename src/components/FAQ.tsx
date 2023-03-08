@@ -24,6 +24,8 @@ const FAQ = () => {
           <div className="p-4">
             + Why HypeGG? <br />
             HypeGG has a lot more to come, specific profiles for each user associated with their wallet, mobile app and a much more improved UI.
+            <br />
+            <a className="text-gray-800" target={"blank"} href="https://www.figma.com/file/idax47Gv6RE4ERJ51pKvU5/POT?node-id=0%3A1&t=pHSb4En660nYvHZP-0">Click here to see what the future looks like</a>
           </div>
         </div>
       </div>

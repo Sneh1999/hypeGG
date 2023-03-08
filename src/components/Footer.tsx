@@ -17,10 +17,20 @@ const Footer = () => {
 
       <div className="flex items-center justify-center gap-4">
         <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] md:h-11 md:w-11">
+          <a 
+          href="https://twitter.com/KhanAbbas201"
+          target={"_blank"}
+          >
           <IoLogoTwitter className="h-4 w-4 text-white md:h-6 md:w-6" />
+          </a>
         </div>
         <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] md:h-11 md:w-11">
+          <a 
+          href="https://github.com/Sneh1999/hypeGG"
+          target={"_blank"}
+          >
           <IoLogoGithub className="h-4 w-4 text-white md:h-6 md:w-6" />
+          </a>
         </div>
         <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] md:h-11 md:w-11">
           <FaDiscord className="h-4 w-4 text-white md:h-6 md:w-6" />

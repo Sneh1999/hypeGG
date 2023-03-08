@@ -3,6 +3,7 @@ import { HypeForm } from "@/constants/constants";
 import { useCreateHypeStore } from "@/stores/CreateHypeStore";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import image from "../../public/flow.png";
 
 async function imageSize(
   url: string
@@ -76,7 +77,12 @@ const CreateHypeForm = () => {
       <div className="flex-col">
         <h1 className="text-3xl font-extrabold text-[#7165FF]">Send HypeGG</h1>
         <h3 className="pt-2 text-base font-medium text-[#00000080]">
-          Kindly fill the form below to create your POT
+          Kindly fill the form below to create your POT <br />
+          Image should have a fixed size 
+          <a
+          className="text-blue-400" 
+          href="../../public/flow.png"
+          download> sample here</a>
         </h3>
         <h2 className="py-2  text-base font-medium text-[#020B1A]">
           Collection
