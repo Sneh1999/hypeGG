@@ -23,7 +23,7 @@ contract HypeGG is ERC1155Drop {
         super.safeTransferFrom(from, to, id, amount, data);
     }
 
-    function canLazyMint() internal view virtual returns (bool) {
+    function _canLazyMint() internal view override returns (bool) {
         return msg.sender != address(0);
     }
 }
