@@ -6,12 +6,14 @@ interface CreateHypeState {
   community: string;
   addresses: string[];
   image: string;
+  imageFile: File | null;
   form: HypeForm;
   setCollection: (collection: string) => void;
   setCommunity: (community: string) => void;
   addAddress: (address: string) => void;
   removeAddresses: () => void;
   setImage: (image: string) => void;
+  setImageFile: (file: File) => void;
   setForm: (form: HypeForm) => void;
 }
 
@@ -20,6 +22,7 @@ export const useCreateHypeStore = create<CreateHypeState>()((set) => ({
   community: "",
   addresses: [],
   image: "",
+  imageFile: null,
   csv: "",
   form: HypeForm.CREATE_HYPE,
   setCollection(collection) {
@@ -59,6 +62,14 @@ export const useCreateHypeStore = create<CreateHypeState>()((set) => ({
       return {
         ...state,
         image: image,
+      };
+    });
+  },
+  setImageFile(file) {
+    set((state) => {
+      return {
+        ...state,
+        imageFile: file,
       };
     });
   },

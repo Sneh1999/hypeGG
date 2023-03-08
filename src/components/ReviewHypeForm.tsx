@@ -10,7 +10,7 @@ import { contractAddress } from "../constants/constants";
 import React from "react";
 import { toast } from "react-toastify";
 import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
-import { readFileSync } from "fs";
+import { useStorageUpload } from "@thirdweb-dev/react";
 
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
@@ -24,16 +24,23 @@ const ReviewHypeForm = () => {
     contract,
     tokenId
   );
+  const { mutateAsync: upload } = useStorageUpload();
 
   const handleMintButton = async (): Promise<void> => {
     try {
       console.log("createHypeStore", createHypeStore);
+      const uploadUrl = await upload({
+        data: [createHypeStore.imageFile],
+        options: { uploadWithGatewayUrl: true, uploadWithoutDirectory: true },
+      });
+      console.log({ uploadUrl });
+      createHypeStore.setImage(uploadUrl[0]);
       await lazyMint({
         metadatas: [
           {
             name: createHypeStore.collection,
             description: createHypeStore.community,
-            image: createHypeStore.image
+            image: uploadUrl[0],
           },
         ],
       });

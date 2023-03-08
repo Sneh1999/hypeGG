@@ -68,6 +68,7 @@ const CreateHypeForm = () => {
     }
 
     createHypeStore.setImage(objectUrl);
+    createHypeStore.setImageFile(file);
   };
 
   return (
