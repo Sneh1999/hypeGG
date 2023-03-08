@@ -64,8 +64,10 @@ export default function Navbar() {
               </div>
 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0 md:ml-52">
-                {/* <ConnectButton /> */}
-                <ConnectWallet />
+                <ConnectWallet 
+                accentColor="#F5F5F5"
+                colorMode="light"
+                />
               </div>
             </div>
           </div>

@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ChainId } from "@thirdweb-dev/sdk";
 
-// const activeChain = ChainId.FantomTestnet;
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -17,7 +16,7 @@ const nunito = Nunito({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={nunito.className}>
-          <ThirdwebProvider activeChain={ChainId.Mumbai}>
+          <ThirdwebProvider activeChain={ChainId.FantomTestnet}>
           <Layout>
             <ToastContainer />
             <Component {...pageProps} />
