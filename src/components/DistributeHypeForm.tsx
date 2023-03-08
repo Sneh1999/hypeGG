@@ -19,11 +19,13 @@ const DistributeHypeForm = () => {
     createHypeStore.removeAddresses();
     let rows = str.split("\n");
     console.log(rows);
+    rows[0] = rows[0].replace("\r", "");
     if (rows[0] != "address") {
       return toast.error("Add address as the header");
     }
 
     rows.map((row) => {
+      row = row.replace("\r", "");
       if (!utils.isAddress(row) && row != "address") {
         createHypeStore.removeAddresses();
         return toast.error("Incorrect address:" + row);
