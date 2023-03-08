@@ -17,8 +17,8 @@ const NFT = ({ nft }) => {
           <p className="mt-2 text-sm font-medium text-gray-900">Created By: </p>
         </div>
         <div className="flex flex-col justify-between px-4">
-          <h2 className="text-xl font-bold">{nft.name}</h2>
-          <p className="text-gray-500">{nft.description}</p>
+          <h2 className="text-xl font-bold">{nft.metadata.name}</h2>
+          <p className="text-gray-500">{nft.metadata.description}</p>
           <p className="mt-2 text-sm font-medium text-gray-900">hypeGG</p>
         </div>
       </div>
