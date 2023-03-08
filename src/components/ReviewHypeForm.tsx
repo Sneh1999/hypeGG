@@ -1,15 +1,20 @@
 import { HypeForm } from "@/constants/constants";
 import { useCreateHypeStore } from "@/stores/CreateHypeStore";
-import { useContract, useLazyMint } from "@thirdweb-dev/react";
+import { useContract, useContractRead, useLazyMint, useSetClaimConditions } from "@thirdweb-dev/react";
 import { contractAddress } from "../constants/constants";
 import React from "react";
 import { toast } from "react-toastify";
+import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
 
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
-  const { contract } = useContract(contractAddress)
+  const { contract } = useContract(contractAddress);
+  const { data } = useContractRead(contract, "nextTokenIdToMint");
+  const tokenId = data?.toNumber() - 1;
+  console.log(tokenId)
   console.log(contract)
-  const { mutateAsync: lazyMint, isLoading, error } = useLazyMint(contract);
+  const { mutateAsync: lazyMint } = useLazyMint(contract);
+  const { mutateAsync: setClaimConditions } = useSetClaimConditions(contract, tokenId);
   
   const handleMintButton = async (): Promise<void> => {
     try {
@@ -17,10 +22,27 @@ const ReviewHypeForm = () => {
         metadatas: [
           {
             name: createHypeStore.collection,
-            description: createHypeStore.community
+            description: createHypeStore.community,
+            image: createHypeStore.image
           },
         ],
       });
+      await setClaimConditions({
+        phases: [
+          {
+            metadata: {
+              name: "Claim Phase",
+            },
+            currencyAddress: NATIVE_TOKEN_ADDRESS,
+            price: 0,
+            maxClaimablePerWallet: 1,
+            maxClaimableSupply: 1000,
+            startTime: new Date(),
+            waitInSeconds: 60 * 60 * 24 * 7,
+            snapshot: createHypeStore.addresses,
+          },
+        ],
+      })
       toast.success("Hype Created Successfully!!!");
     } catch (err) {
       console.error(err);
