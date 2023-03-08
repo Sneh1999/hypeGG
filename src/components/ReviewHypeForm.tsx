@@ -10,7 +10,6 @@ import { contractAddress } from "../constants/constants";
 import React from "react";
 import { toast } from "react-toastify";
 import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
-import { readFileSync } from "fs";
 
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();

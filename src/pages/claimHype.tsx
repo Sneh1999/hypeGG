@@ -15,6 +15,12 @@ const ClaimHype = () => {
     start: 0,
     count: 100,
   });
+  if(isLoading) {
+    return(
+      <div>Loading...</div>
+    )
+  }
+
   return (
     <div className="mx-auto mt-10  flex flex-col items-center justify-center gap-10 px-10 md:gap-1">
       <div className="flex-col">
