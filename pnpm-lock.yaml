@@ -7,6 +7,7 @@ specifiers:
   '@rainbow-me/rainbowkit': ^0.11.0
   '@thirdweb-dev/react': 3.10.0-nightly-20230307201940-f9cf2bc6
   '@thirdweb-dev/sdk': 3.10.0-nightly-20230307201940-f9cf2bc6
+  '@thirdweb-dev/storage': ^1.1.0
   '@types/node': 18.14.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
@@ -33,6 +34,7 @@ dependencies:
   '@rainbow-me/rainbowkit': 0.11.0_al3t3skoqw2pcrfr34uzii4n2u
   '@thirdweb-dev/react': 3.10.0-nightly-20230307201940-f9cf2bc6_kh6wyxme4rwaxsqplawuoh7xsq
   '@thirdweb-dev/sdk': 3.10.0-nightly-20230307201940-f9cf2bc6_ethers@5.7.2
+  '@thirdweb-dev/storage': 1.1.0
   '@types/node': 18.14.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
@@ -1847,6 +1849,18 @@ packages:
       uuid: 9.0.0
       yaml: 2.2.1
       zod: 3.21.4
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
+  /@thirdweb-dev/storage/1.1.0:
+    resolution: {integrity: sha512-KVAfkQsd5lGYOe2OBOWju9TF0s5TsKk26ViO9BJLn0/FcAwI+Xev6iyeDpfiO6GMA8kUmX/KSR0EtLPlJJgOKw==}
+    dependencies:
+      cross-fetch: 3.1.5
+      form-data: 4.0.0
+      ipfs-unixfs-importer: 7.0.3
+      uuid: 9.0.0
     transitivePeerDependencies:
       - encoding
       - supports-color

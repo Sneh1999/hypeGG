@@ -10,35 +10,38 @@ import { contractAddress } from "../constants/constants";
 import React from "react";
 import { toast } from "react-toastify";
 import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
+import { readFileSync } from "fs";
 
 const ReviewHypeForm = () => {
   const createHypeStore = useCreateHypeStore();
   const { contract } = useContract(contractAddress);
   const { data } = useContractRead(contract, "nextTokenIdToMint");
-  const tokenId = data?.toNumber() - 1;
+  const tokenId = data?.toNumber();
   console.log(tokenId);
   console.log(contract);
   const { mutateAsync: lazyMint } = useLazyMint(contract);
   const { mutateAsync: setClaimConditions } = useSetClaimConditions(
     contract,
-    0
+    tokenId
   );
 
   const handleMintButton = async (): Promise<void> => {
     try {
-      // await lazyMint({
-      //   metadatas: [
-      //     {
-      //       name: createHypeStore.collection,
-      //       description: createHypeStore.community,
-      //       image: createHypeStore.image,
-      //     },
-      //   ],
-      // });
+      console.log("createHypeStore", createHypeStore);
+      await lazyMint({
+        metadatas: [
+          {
+            name: createHypeStore.collection,
+            description: createHypeStore.community,
+            image: createHypeStore.image
+          },
+        ],
+      });
       const addresses = [];
       for (let i = 1; i < createHypeStore.addresses.length; i++) {
         addresses.push({
           address: createHypeStore.addresses[i],
+          maxClaimable: 1,
         });
       }
       console.log(addresses);
@@ -50,7 +53,7 @@ const ReviewHypeForm = () => {
             },
             currencyAddress: NATIVE_TOKEN_ADDRESS,
             price: 0,
-            maxClaimablePerWallet: 1,
+            maxClaimablePerWallet: 0,
             maxClaimableSupply: 1000,
             startTime: new Date(),
             waitInSeconds: 60 * 60 * 24 * 7,
