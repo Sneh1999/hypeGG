@@ -26,4 +26,8 @@ contract HypeGG is ERC1155Drop {
     function _canLazyMint() internal view override returns (bool) {
         return msg.sender != address(0);
     }
+
+    function _canSetClaimConditions() internal view override returns (bool) {
+        return msg.sender != address(0);
+    }
 }

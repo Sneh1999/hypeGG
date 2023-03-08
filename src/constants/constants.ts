@@ -4,4 +4,4 @@ export enum HypeForm {
   REVIEW_HYPE,
 }
 
-export const contractAddress: string = "0x8f45d5196fa5cF13a69aFc94C9b093f8EE2EEcA8";
+export const contractAddress: string = "0xA1C9171d9A1a69Cb051744f7A12604fB6d66c6Fa";
