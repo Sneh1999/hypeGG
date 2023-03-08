@@ -7,9 +7,7 @@ const Intro = () => {
         HypeGG Inc built the Proof of Attendance Protocol
       </div>
       <div className="mx-auto mt-10 flex max-w-sm text-center font-normal">
-        Lorem ipsum dolor sit amet consectetur. Eu fermentum volutpat at in quam
-        dictumst quam mauris amet. entum volutpat at in quam dictumst quam
-        mauris amet
+      HypeeGg allows event organizers, educators or anyone to verify that participants have attended a particular event or class. This platform allows particular users of events to be able to prove their presence using soulbound NFTs.
       </div>
     </div>
   );
