@@ -16,8 +16,8 @@ export default function Home() {
                 WITH <span className="text-[#7165FF] ">hypeGG</span>
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-xl">
-                Lorem ipsum dolor sit amet consectetur. Diam libero blandit
-                aliquaus eu molestie.
+                Create collections and distribute soulbound NFTs to your beloved
+                users
               </p>
               <div className="mt-4 flex items-center gap-x-6">
                 <Link

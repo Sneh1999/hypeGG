@@ -1,6 +1,11 @@
 import { HypeForm } from "@/constants/constants";
 import { useCreateHypeStore } from "@/stores/CreateHypeStore";
-import { useContract, useContractRead, useLazyMint, useSetClaimConditions } from "@thirdweb-dev/react";
+import {
+  useContract,
+  useContractRead,
+  useLazyMint,
+  useSetClaimConditions,
+} from "@thirdweb-dev/react";
 import { contractAddress } from "../constants/constants";
 import React from "react";
 import { toast } from "react-toastify";
@@ -11,11 +16,14 @@ const ReviewHypeForm = () => {
   const { contract } = useContract(contractAddress);
   const { data } = useContractRead(contract, "nextTokenIdToMint");
   const tokenId = data?.toNumber() - 1;
-  console.log(tokenId)
-  console.log(contract)
-  const { mutateAsync: lazyMint } = useLazyMint(contract);
-  const { mutateAsync: setClaimConditions } = useSetClaimConditions(contract, tokenId);
-  
+  console.log(tokenId);
+  console.log(contract);
+  const { mutateAsync: lazyMint } = useLazyMint(contract);
+  const { mutateAsync: setClaimConditions } = useSetClaimConditions(
+    contract,
+    tokenId
+  );
+
   const handleMintButton = async (): Promise<void> => {
     try {
       await lazyMint({
@@ -23,10 +31,17 @@ const ReviewHypeForm = () => {
           {
             name: createHypeStore.collection,
             description: createHypeStore.community,
-            image: createHypeStore.image
+            image: createHypeStore.image,
           },
         ],
       });
+      const addresses = [];
+      for (let i = 1; i < createHypeStore.addresses.length; i++) {
+        addresses.push({
+          address: createHypeStore.addresses[i],
+        });
+      }
+      console.log(addresses);
       await setClaimConditions({
         phases: [
           {
@@ -39,16 +54,16 @@ const ReviewHypeForm = () => {
             maxClaimableSupply: 1000,
             startTime: new Date(),
             waitInSeconds: 60 * 60 * 24 * 7,
-            snapshot: createHypeStore.addresses,
+            snapshot: addresses,
           },
         ],
-      })
+      });
       toast.success("Hype Created Successfully!!!");
     } catch (err) {
       console.error(err);
-      toast.error("Failed to Mint!")
+      toast.error("Failed to Mint!");
     }
-  }
+  };
 
   return (
     <div className="mx-auto mt-20 flex flex-col-reverse items-center justify-center gap-10 md:flex-row">
