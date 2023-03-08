@@ -5,6 +5,7 @@ import {
   useContractRead,
   useLazyMint,
   useSetClaimConditions,
+  useStorageUpload,
 } from "@thirdweb-dev/react";
 import { contractAddress } from "../constants/constants";
 import React from "react";
@@ -23,16 +24,23 @@ const ReviewHypeForm = () => {
     contract,
     tokenId
   );
+  const { mutateAsync: upload } = useStorageUpload();
 
   const handleMintButton = async (): Promise<void> => {
     try {
       console.log("createHypeStore", createHypeStore);
+      const uploadUrl = await upload({
+        data: [createHypeStore.imageFile],
+        options: { uploadWithGatewayUrl: true, uploadWithoutDirectory: true },
+      });
+      console.log({ uploadUrl });
+      createHypeStore.setImage(uploadUrl[0]);
       await lazyMint({
         metadatas: [
           {
             name: createHypeStore.collection,
             description: createHypeStore.community,
-            image: createHypeStore.image
+            image: uploadUrl[0],
           },
         ],
       });

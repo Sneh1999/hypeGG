@@ -42,6 +42,7 @@ const ClaimHype = () => {
       <div className="flex flex-wrap items-center justify-around">
         {nfts &&
           nfts?.map((nft) => {
+            console.log(nft);
             return <NFT nft={nft} key={nft.metadata.id} />;
           })}
       </div>
