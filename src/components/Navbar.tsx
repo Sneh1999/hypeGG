@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+// import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectWallet } from "@thirdweb-dev/react";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -63,7 +64,8 @@ export default function Navbar() {
               </div>
 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0 md:ml-52">
-                <ConnectButton />
+                {/* <ConnectButton /> */}
+                <ConnectWallet />
               </div>
             </div>
           </div>
