@@ -1,9 +1,19 @@
-import React from "react";
-import Image from "next/image";
-import Nft from "../../public/Nft.png";
-import { ThirdwebNftMedia } from "@thirdweb-dev/react";
+import React, { useEffect } from "react";
+import {
+  ThirdwebNftMedia,
+  Web3Button,
+  useContract,
+  useClaimerProofs,
+  useAddress,
+} from "@thirdweb-dev/react";
+import { contractAddress } from "@/constants/constants";
 
 const NFT = ({ nft }) => {
+  const address = useAddress();
+  const { contract } = useContract(contractAddress);
+  const { data: claimableNFTs } = useClaimerProofs(contract, address!, 0);
+  console.log(claimableNFTs);
+
   return (
     <div className="my-10 flex flex-col items-center overflow-hidden rounded-lg bg-white p-2 drop-shadow-2xl hover:drop-shadow-lg sm:flex-row sm:items-center">
       <div className="flex">
@@ -23,9 +33,13 @@ const NFT = ({ nft }) => {
         <ThirdwebNftMedia metadata={nft.metadata} />
       </div>
       <div className="flex flex-col items-center justify-center"></div>
-      <button className="mt-4 rounded-2xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] px-5 py-3 text-white hover:opacity-70">
+      <Web3Button
+        contractAddress={contractAddress}
+        action={(contract) => contract.erc1155.claim(nft.metadata.id, 1)}
+        className="mt-4 w-8 rounded-2xl bg-gradient-to-r from-[#6B8BFC] to-[#867DEC] text-white hover:opacity-70"
+      >
         Claim
-      </button>
+      </Web3Button>
     </div>
   );
 };
