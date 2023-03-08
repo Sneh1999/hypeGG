@@ -22,4 +22,8 @@ contract HypeGG is ERC1155Drop {
         require(from == address(0), "SBTs Can't be transferred");
         super.safeTransferFrom(from, to, id, amount, data);
     }
+
+    function canLazyMint() internal view virtual returns (bool) {
+        return msg.sender != address(0);
+    }
 }
